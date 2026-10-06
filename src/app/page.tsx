@@ -3,7 +3,16 @@ import DemoForm from "@/components/demo-form";
 const capacity = [
   { type: "Köpek", current: 64, reserved: 8, available: 28 },
   { type: "Kedi", current: 42, reserved: 6, available: 12 },
+  { type: "Kuş", current: 18, reserved: 4, available: 8 },
+  { type: "Tavşan", current: 12, reserved: 3, available: 5 },
+  { type: "Balık", current: 36, reserved: 6, available: 18 },
 ];
+const capacityTotals = capacity.reduce((totals, row) => ({
+  total: totals.total + row.current + row.reserved + row.available,
+  current: totals.current + row.current,
+  reserved: totals.reserved + row.reserved,
+  available: totals.available + row.available,
+}), { total: 0, current: 0, reserved: 0, available: 0 });
 const features = [
   ["01", "Her tür için net kapasite", "Toplam, dolu, rezerve ve uygun alanları hayvan türüne göre bir arada görün. Yeni kabul kararlarını güncel kapasiteyle planlayın."],
   ["02", "Düzenli kabul süreci", "Hayvan kabul taleplerini değerlendirin; onay ve ret kararlarını izleyin. Onaylanan talep için ayrılan yeri fiziksel girişten ayrı takip edin."],
@@ -32,8 +41,8 @@ export default function Home() {
       </section>
       <section id="ornek-panel" className="panel-section" aria-labelledby="panel-title"><div className="container panel-layout">
         <div><p className="eyebrow">BÜTÜN RESMİ GÖRÜN</p><h2 id="panel-title">Bir bakışta<br />ne kadar yer var?</h2><p>Tür bazında kapasite görünümü, dolu ve ayrılmış yerleri birbirinden ayırır. Böylece uygun alanı daha kolay değerlendirebilirsiniz.</p><p className="panel-disclaimer">Örnek panel — kurgusal veriler.<br />Bu görünüm çalışan bir yönetim sistemi değildir.</p></div>
-        <div className="dashboard"><div className="dashboard-top"><span className="mini-brand">barındım / kapasite</span><span className="sample-tag">ÖRNEK</span></div><h3>Kapasite özeti</h3><p className="dashboard-subtitle">Kurgusal Örnek Barınak</p><div className="stat-grid">{[[160,"Toplam"],[106,"Dolu"],[14,"Rezerve"],[40,"Uygun"]].map(([value,label]) => <div key={label} className={`stat ${label === "Uygun" ? "available" : ""}`}><strong>{value}</strong><span>{label}</span></div>)}</div>
-          <div className="capacity-table"><table><caption className="sr-only">Hayvan türüne göre kurgusal kapasite dağılımı</caption><thead><tr><th scope="col">Tür</th><th scope="col">Toplam</th><th scope="col">Dolu</th><th scope="col">Rezerve</th><th scope="col">Uygun</th></tr></thead><tbody>{capacity.map(row => <tr key={row.type}><th scope="row">{row.type}</th><td>{row.current+row.reserved+row.available}</td><td>{row.current}</td><td>{row.reserved}</td><td className="available-text">{row.available}</td></tr>)}</tbody></table></div><p className="dashboard-foot">Toplam = dolu + rezerve + uygun</p>
+        <div className="dashboard"><div className="dashboard-top"><span className="mini-brand">barındım / kapasite</span><span className="sample-tag">ÖRNEK</span></div><h3>Kapasite özeti</h3><p className="dashboard-subtitle">Kurgusal Örnek Barınak</p><div className="stat-grid">{[[capacityTotals.total,"Toplam"],[capacityTotals.current,"Dolu"],[capacityTotals.reserved,"Rezerve"],[capacityTotals.available,"Uygun"]].map(([value,label]) => <div key={label} className={`stat ${label === "Uygun" ? "available" : ""}`}><strong>{value}</strong><span>{label}</span></div>)}</div>
+          <div className="capacity-table"><table><caption className="sr-only">Hayvan türüne göre kurgusal kapasite dağılımı</caption><thead><tr><th scope="col">Tür</th><th scope="col">Toplam</th><th scope="col">Dolu</th><th scope="col">Rezerve</th><th scope="col">Uygun</th></tr></thead><tbody>{capacity.map(row => <tr key={row.type}><th scope="row">{row.type}{row.type === "Balık" && <span className="capacity-unit">Balık sayısı</span>}</th><td>{row.current+row.reserved+row.available}</td><td>{row.current}</td><td>{row.reserved}</td><td className="available-text">{row.available}</td></tr>)}</tbody><tfoot><tr><th scope="row">Genel toplam</th><td>{capacityTotals.total}</td><td>{capacityTotals.current}</td><td>{capacityTotals.reserved}</td><td className="available-text">{capacityTotals.available}</td></tr></tfoot></table></div><p className="dashboard-foot">Toplam = dolu + rezerve + uygun.<br />Balık kapasitesi balık sayısını ifade eder.</p>
         </div>
       </div></section>
       <section id="nasil-calisir" className="section container" aria-labelledby="flow-title"><p className="eyebrow">FİKRİN ARKASINDAKİ AKIŞ</p><h2 id="flow-title">Talep etmek, giriş yapmak değildir.</h2><p className="flow-intro">Barındım’ın hedeflediği yönetim akışı, bir kabul talebini hayvanın fiziksel gelişinden ayrı ele alır.</p><ol className="steps">{[["Talep", "Kabul isteği oluşturulur."],["Değerlendirme", "Yönetici onaylar veya reddeder."],["Yer ayırma", "Onayla birlikte yer rezerve edilir."],["Giriş / çıkış", "Fiziksel giriş kaydedilir; çıkışta yer açılır."]].map(([title,copy],i) => <li key={title}><span className="step-number">0{i+1}</span><h3>{title}</h3><p>{copy}</p></li>)}</ol><p className="hint flow-note">Bu akış ürün fikrini açıklar; bu sitede yalnızca yazılım demo talebi kaydedilir.</p></section>
