@@ -1,0 +1,12 @@
+type AnimalKind = "dog" | "cat" | "bird" | "rabbit" | "fish";
+
+/** Decorative animals share the rounded shapes and warm palette of the shelter drawing. */
+export default function AnimalArt({ kind, className = "" }: { kind: AnimalKind; className?: string }) {
+  return <svg viewBox="0 0 100 100" className={`animal-art ${className}`} aria-hidden="true" focusable="false">
+    {kind === "dog" && <><path d="M26 47Q23 22 50 22Q77 22 74 47L74 85H26Z" fill="#bd8860"/><path d="M30 28Q13 19 15 53Q17 64 28 51M70 28Q87 19 85 53Q83 64 72 51" fill="#79543c"/><ellipse cx="50" cy="57" rx="18" ry="14" fill="#f3d9b9"/><path d="M44 51Q50 47 56 51L50 58Z" fill="#49372c"/><circle cx="37" cy="40" r="3" fill="#49372c"/><circle cx="63" cy="40" r="3" fill="#49372c"/></>}
+    {kind === "cat" && <><path d="M25 47L24 16L43 29Q50 25 57 29L76 16L75 47L78 85H22Z" fill="#f2c77e"/><path d="M29 23L30 40L40 32M71 23L70 40L60 32" fill="#eaa58c"/><circle cx="38" cy="48" r="3" fill="#49372c"/><circle cx="62" cy="48" r="3" fill="#49372c"/><path d="M45 58H55L50 63Z" fill="#79543c"/><path d="M20 57L37 60M18 65H36M80 57L63 60M82 65H64" stroke="#79543c" strokeWidth="2" strokeLinecap="round"/></>}
+    {kind === "bird" && <><path d="M68 40L89 48L68 55Z" fill="#e6a437"/><path d="M19 55L7 37L28 40Q31 22 54 22Q77 22 75 50Q75 79 43 79Q19 79 19 55" fill="#9bbdce"/><path d="M30 48Q59 37 57 61Q46 75 30 48" fill="#638fa5"/><circle cx="59" cy="38" r="3" fill="#334750"/><path d="M39 78V88M53 77V88" stroke="#79543c" strokeWidth="3" strokeLinecap="round"/></>}
+    {kind === "rabbit" && <><ellipse cx="36" cy="28" rx="11" ry="25" transform="rotate(-12 36 28)" fill="#edd5be"/><ellipse cx="64" cy="28" rx="11" ry="25" transform="rotate(12 64 28)" fill="#edd5be"/><ellipse cx="36" cy="26" rx="4" ry="17" transform="rotate(-12 36 26)" fill="#e5a291"/><ellipse cx="64" cy="26" rx="4" ry="17" transform="rotate(12 64 26)" fill="#e5a291"/><path d="M22 62Q22 36 50 36Q78 36 78 62L79 88H21Z" fill="#edd5be"/><circle cx="38" cy="57" r="3" fill="#49372c"/><circle cx="62" cy="57" r="3" fill="#49372c"/><path d="M45 66H55L50 72Z" fill="#b76454"/></>}
+    {kind === "fish" && <><path d="M28 50L9 28V72Z" fill="#d78263"/><path d="M44 33L55 16L69 35M44 66L55 83L69 64" fill="#e6a437"/><ellipse cx="56" cy="50" rx="33" ry="23" fill="#eda07c"/><path d="M44 32Q58 50 44 68" fill="none" stroke="#d78263" strokeWidth="3"/><circle cx="74" cy="45" r="3" fill="#49372c"/><path d="M84 55H88" stroke="#79543c" strokeWidth="2" strokeLinecap="round"/></>}
+  </svg>;
+}

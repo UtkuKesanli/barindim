@@ -46,7 +46,7 @@ export default function DemoForm() {
       form.reset();
       notify(`Demo talebiniz kaydedildi. Kayıt numaranız: ${result.id}. Bu değerlendirme demosunda e-posta gönderilmez.`, true);
     } catch {
-      notify("Sunucudan kayıt onayı alınamadı. Bilgileriniz korunuyor. Yeniden göndermeden önce bağlantınızı kontrol edin.");
+      notify("Talebinizin kaydedildiği doğrulanamadı. Bilgileriniz korunuyor. Yeniden göndermeden önce bağlantınızı kontrol edin.");
     } finally { busy.current = false; setPending(false); }
   }
 
@@ -64,8 +64,8 @@ export default function DemoForm() {
         <div className="field"><label htmlFor="email">E-posta adresiniz</label><input id="email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="deniz@example.com" {...accessibility("email")} />{fieldError("email")}</div>
       </div>
       <div className="field"><label htmlFor="service">İlgilendiğiniz hizmet</label><select id="service" name="service" required defaultValue="" {...accessibility("service")}><option value="" disabled>Bir hizmet seçin</option>{services.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}</select>{fieldError("service")}</div>
-      <div className="field"><label htmlFor="description">Nasıl bir çözüme ihtiyacınız var?</label><textarea id="description" name="description" required minLength={10} maxLength={2000} rows={5} placeholder="Barınağınızın kapasite takibi veya giriş / çıkış süreci için ihtiyacınızı anlatın." {...accessibility("description")} />{fieldError("description")}<span className="hint">10–2000 karakter. Yalnızca kurgusal test bilgileri kullanın.</span></div>
-      <button className="button" type="submit" disabled={pending}>{pending ? "Gönderiliyor…" : "Demo talebini gönder"}<span aria-hidden="true"> ↗</span></button>
+      <div className="field"><label htmlFor="description">Nasıl bir çözüme ihtiyacınız var?</label><textarea id="description" name="description" required minLength={10} maxLength={2000} rows={5} placeholder="Barınağınızın kapasite takibi veya giriş / çıkış süreci için ihtiyacınızı anlatın." {...accessibility("description")} />{fieldError("description")}<span className="hint">10–2000 karakter.</span></div>
+      <button className="button" type="submit" disabled={pending}>{pending ? "Gönderiliyor…" : "Demo talebini gönder"}</button>
     </fieldset>
     <p ref={notice} tabIndex={-1} role="status" aria-live="polite" aria-atomic="true" className={`notice ${message ? (success ? "success" : "error") : ""}`}>{message}</p>
   </form>;

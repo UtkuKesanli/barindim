@@ -21,7 +21,11 @@ Earlier context came from the user's summary rather than a full prior transcript
 - Corrected same-origin validation and added a regression test for an internal URL differing from the incoming Host header.
 - Rejected blind `npm audit fix --force`, incompatible downgrades and unverified overrides. Checked current releases, dependency ranges and actual upstream calls. No security fix fits the current ranges: braces has no listed patch and patched UUID is outside gaxios’s declared range. A UUID candidate passed a scoped multipart compatibility check, but no override was retained. Open findings and their impact remain documented in the README.
 
+- Accepted the desktop design revision: consistent Barındım branding, retained shelter drawing, original decorative SVG animals, wider layout, status colors with visible labels, one calculated totals summary below the species rows, and equally sized form controls. Backend, field definitions, service options and validation logic were preserved. Local review precedes publication.
+
 ## Actual verifications
+
+- Local desktop redesign: visually inspected the full desktop/mobile page and desktop form error/success states. Browser checks passed at 320–1920 pixels, including single-summary placement, calculated totals, equal input/select heights, unchanged service values, keyboard skip link and pending/duplicate prevention. Form-state previews used mocked 503/201 responses; they did not verify a new database write. Existing tests, lint, type-check and build passed.
 
 - All seven automated tests, ESLint, TypeScript and production build passed.
 - Direct API requests bypassing browser validation rejected invalid fields and service values. Tests also covered malformed JSON, oversized bodies and cross-origin requests.
