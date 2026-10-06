@@ -45,10 +45,11 @@ export default function Home() {
         <div className="panel-copy"><p className="eyebrow">Kapasite takibi</p><h2 id="panel-title">Kimler burada,<br />ne kadar yer var?</h2><p>Her hayvan türünün dolu, rezerve ve boş kapasitesini tek tabloda görün.</p><AnimalArt kind="dog" className="panel-animal"/></div>
         <div className="dashboard">
           <div className="dashboard-top"><div><span className="mini-brand">Barındım</span><h3>Kapasite özeti</h3></div><span className="sample-tag">Örnek panel · Kurgusal veriler</span></div>
-          <div className="capacity-table"><table><caption className="sr-only">Hayvan türüne göre kurgusal kapasite dağılımı</caption>
+          <div className="capacity-table" role="region" aria-label="Tür bazında kapasite" tabIndex={0}><table><caption className="sr-only">Hayvan türüne göre kurgusal kapasite dağılımı</caption>
             <thead><tr><th scope="col">Tür</th><th scope="col" className="total-text">Toplam</th><th scope="col" className="occupied-text">Dolu</th><th scope="col" className="reserved-text">Rezerve</th><th scope="col" className="available-text">Boş</th></tr></thead>
             <tbody>{capacity.map(row => <tr key={row.type} className={`species-${row.kind}`}><th scope="row"><span className="species-name"><AnimalArt kind={row.kind}/>{row.type}</span></th><td>{row.current + row.reserved + row.available}</td><td>{row.current}</td><td>{row.reserved}</td><td>{row.available}</td></tr>)}</tbody>
           </table></div>
+          <p className="table-scroll-hint">Tüm sütunları görmek için tabloyu yana kaydırabilirsiniz.</p>
           <div className="grand-total"><p>Σ Genel toplam</p><div className="stat-grid">
             {[[capacityTotals.total, "Toplam", "total"], [capacityTotals.current, "Dolu", "occupied"], [capacityTotals.reserved, "Rezerve", "reserved"], [capacityTotals.available, "Boş", "available"]].map(([value, label, status]) => <div key={status} className={`stat ${status}`}><span>{label}</span><strong>{value}</strong></div>)}
           </div></div>

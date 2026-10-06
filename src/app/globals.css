@@ -61,6 +61,7 @@ h1 span { color:var(--orange); }
 .mini-brand { font-size:12px; font-weight:700; color:var(--orange); }
 .dashboard h3 { margin-top:5px; font-size:24px; }
 .sample-tag { font-size:11px; background:var(--pale); color:#783819; padding:7px 10px; border-radius:6px; line-height:1.45; }
+.table-scroll-hint { display:none; }
 .capacity-table table { border-collapse:collapse; width:100%; text-align:right; font-size:18px; font-variant-numeric:tabular-nums; }
 th,td { padding:8px 10px; border-bottom:1px solid #eee7dd; }
 thead th { font-size:12px; font-weight:600; padding-bottom:14px; }
@@ -122,3 +123,20 @@ textarea { resize:vertical; } input::placeholder,textarea::placeholder { color:#
 @media(max-width:1000px) { .container { width:calc(100% - 48px); } .hero { gap:28px; } .hero-art { width:270px; } .arch { height:300px; } .house-roof { left:65px; } .house-body { left:37px; } .animal { left:60px; } .cat { left:164px; } .panel-layout { gap:30px; grid-template-columns:.6fr 1.4fr; } .demo-layout { gap:40px; } .feature { padding-left:0; } .feature > .animal-art { position:static; margin-bottom:16px; } .section-heading { align-items:start; } }
 @media(max-width:760px) { .container { width:calc(100% - 40px); } .site-header { min-height:84px; gap:16px; flex-wrap:wrap; padding:18px 0; } nav { gap:16px; font-size:12px; } .brand { font-size:24px; } .hero { grid-template-columns:1fr; padding:30px 0 40px; gap:28px; } .hero h1 { font-size:clamp(34px,7vw,48px); } .hero-copy { font-size:16px; } .hero-art { width:240px; } .arch { height:220px; } .house-roof { left:49px; top:42px; } .house-body { left:21px; } .animal { left:44px; } .cat { left:148px; } .section { padding:36px 0; } .section-heading { display:block; margin-bottom:24px; } .section-heading > p { margin-top:16px; max-width:none; } .feature-grid { grid-template-columns:1fr; gap:28px; } .feature { padding-left:84px; } .feature > .animal-art { position:absolute; } .panel-section,.demo-section { padding:36px 0; } .panel-layout,.demo-layout { grid-template-columns:1fr; gap:24px; } .panel-copy > p:not(.eyebrow) { max-width:none; } .panel-animal { display:none; } .dashboard { padding:20px; } .dashboard-top { align-items:start; } .sample-tag { max-width:130px; } .capacity-table table { font-size:16px; } .steps { grid-template-columns:1fr 1fr; gap:24px; } .demo-animals { margin-top:22px; } .demo-context { display:none; } .form-card { padding:24px; } .footer { flex-wrap:wrap; gap:12px; } .footer p { flex-basis:100%; order:3; } }
 @media(max-width:390px) { .container { width:calc(100% - 32px); } nav { width:100%; justify-content:space-between; } .hero-actions { gap:20px; } .button { padding:13px 18px; } .text-link { font-size:12px; } .form-row { grid-template-columns:1fr; gap:0; } .form-card { padding:18px; } .dashboard { padding:14px; } th,td { padding:9px 3px; } thead th { font-size:10px; } tbody th { font-size:12px; } .species-name { gap:5px; } .species-name .animal-art { width:26px; height:34px; } .stat-grid { gap:6px; } .stat strong { font-size:24px; } .stat { padding:10px 8px; } .stat span { font-size:11px; } .dashboard h3 { font-size:21px; } .sample-tag { font-size:10px; max-width:110px; } .demo-animals { gap:8px; } .demo-animals .animal-art { width:90px; } }
+
+/* Keep narrow-screen scrolling inside the table, independently of the totals. */
+@media(max-width:480px) {
+  .panel-layout,.demo-layout { grid-template-columns:minmax(0,1fr); }
+  .dashboard,.grand-total,.capacity-table,.form-card { min-width:0; }
+  .capacity-table { max-width:100%; overflow-x:auto; border-radius:4px; }
+  .capacity-table table { min-width:360px; font-size:16px; }
+  .capacity-table th,.capacity-table td { padding:10px 8px; }
+  .capacity-table thead th { font-size:12px; }
+  .capacity-table tbody th { font-size:14px; }
+  .table-scroll-hint { display:block; margin-top:8px; font-size:11px; }
+  .stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .stat { min-width:0; padding:12px 14px; }
+  .stat strong { font-size:30px; }
+  .stat span { font-size:12px; }
+  .form-row { grid-template-columns:minmax(0,1fr); gap:0; }
+}

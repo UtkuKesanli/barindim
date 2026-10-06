@@ -25,6 +25,8 @@ Earlier context came from the user's summary rather than a full prior transcript
 
 ## Actual verifications
 
+- Mobile follow-up: at 320, 360, 390 and 430 CSS pixels, measured no page, panel or totals overflow; all four total boxes fit inside the panel in a 2×2 grid. Confirmed independent table scrolling with a visible hint and full-width stacked name/email fields. Desktop retained the four-box row and side-by-side fields. Tests, lint, type-check and build passed; backend remained unchanged.
+
 - Local desktop redesign: visually inspected the full desktop/mobile page and desktop form error/success states. Browser checks passed at 320–1920 pixels, including single-summary placement, calculated totals, equal input/select heights, unchanged service values, keyboard skip link and pending/duplicate prevention. Form-state previews used mocked 503/201 responses; they did not verify a new database write. Existing tests, lint, type-check and build passed.
 
 - All seven automated tests, ESLint, TypeScript and production build passed.
