@@ -60,3 +60,11 @@ Kullanıcı: Barındım fikri, Türkçe turuncu tema, scope sadeleştirme, Flutt
 - GitHub CLI salt okunur sorgusu kişisel hesabın bağlı olduğunu gösterdi; repo remote yok. Vercel CLI kurulu değil. Repo seçimi ve Vercel yayın işlemi henüz yapılmadı.
 
 Bu oturumda hazırlık çalışması yaklaşık 02:20–02:50 İstanbul duvar saati aralığında ilerledi; araç/onay beklemeleri dahildir ve kesin aktif çalışma ölçümü değildir. Önceki hazırlık süresi bilinmiyor. Resmi 24 saat başlatılmadı; portal teslimi yapılmadı. Son teslim commit'i, canlı URL ve değerlendirici erişimi tamamlanınca ayrıca kaydedilecek.
+
+## GitHub history merge — 6 October 2026
+
+The user manually uploaded top-level files to `https://github.com/UtkuKesanli/barindim` (public repository), producing remote commit `e3119e4d88321b12d8fa4cee3c6b999575c5bde4`. The local repository was clean at `51121ca33294d56f61f610f5ed55a9ee231d898f` and had no remote. The user explicitly authorized fetching, merging unrelated histories, resolving conflicts without losing significant changes, running checks, and pushing without force.
+
+Added origin and fetched remote main. Compared every shared file: all shared contents were identical; no content conflicts occurred. Merged using `--allow-unrelated-histories --no-commit`. The remote had generated `next-env.d.ts` and `tsconfig.tsbuildinfo`; these were removed from the index, retained locally, and remain ignored. The original GitHub commit is retained in ancestry. The complete local src/, public/, tests/, .gitignore and .env.example are included. Pre-push verification results and the actual push result will be recorded only after execution. This is source publication, not official portal submission or timer start.
+
+Pre-push checks passed: ESLint, 7/7 handler tests, TypeScript, Next.js production build, and git diff --check. Index inspection confirmed required src/ API/form/schema/Firebase files and tests are tracked. .env.local, Firebase key exports, node_modules/, .next/, next-env.d.ts and tsconfig.tsbuildinfo are absent from the final index and ignored. The index contains no private-key PEM literal. The remote generated-file versions remain in the original commit's history, as required by preserving history. No application code changes were necessary for the merge.

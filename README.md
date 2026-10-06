@@ -76,4 +76,4 @@ Başlangıç: kullanıcı `create-next-app` ile Next.js/React/TypeScript/ESLint 
 
 ## Teslim durumu
 
-Yerel production önizleme: http://localhost:3001. Firebase proje kimliği: `barindim-f66f4`. Doğrulanmış kurgusal kayıt: `GB9I2niB3rwtXsAAvSpD`. Canlı URL: bekliyor. Kaynak kod erişimi: yerel repo, remote/erişim doğrulaması bekliyor. Teslim commit ID: henüz belirlenmedi; yayın doğrulaması sonrası `git rev-parse HEAD` ile alınacak. Başlangıç commit'i teslim commit'i değildir. Resmi süre ve portal teslimi yalnızca kullanıcı tarafından yapılır.
+Yerel production önizleme: http://localhost:3001. Firebase proje kimliği: `barindim-f66f4`. Doğrulanmış kurgusal kayıt: `GB9I2niB3rwtXsAAvSpD`. Canlı URL: bekliyor. Kaynak kod deposu: https://github.com/UtkuKesanli/barindim (public). Yerel uygulama ile manuel GitHub yüklemesinin geçmişi korunarak birleştirildi; push ve son remote doğrulaması AI_LOG.md içine kaydedilir. Teslim commit ID: henüz belirlenmedi; yayın doğrulaması sonrası `git rev-parse HEAD` ile alınacak. Başlangıç commit'i teslim commit'i değildir. Resmi süre ve portal teslimi yalnızca kullanıcı tarafından yapılır.
