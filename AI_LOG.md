@@ -2,38 +2,28 @@
 
 ## Tools used
 
-Codex desktop; Node.js/npm; Git and GitHub CLI; TypeScript, ESLint, Node test runner and tsx; Playwright/Chromium for browser checks; shell/Python for file inspection and editing; pypdf for assignment review; web research using official documentation and security advisories.
+Codex desktop; Node.js/npm; Git/GitHub CLI; TypeScript, ESLint, Node test runner and tsx; Playwright/Chromium; shell/Python and pypdf; official documentation and security advisory research.
 
 ## User and AI contributions
 
-**User:** selected the product, target audience, Turkish language and visual direction; narrowed the scope to a promotional site and demo request form; created the Next.js scaffold; translated the README into English; configured Firebase and Vercel and deployed the site.
+**User:** chose the product, audience, Turkish language and scope; created the Next.js scaffold; configured Firebase and Vercel; reviewed and directed the design and mobile revisions; translated the README into English; confirmed a live form record in Firestore. The official timer was started by the user.
 
-**AI:** implemented the page, fictional dashboard, form, shared validation, server API, Firestore integration and tests; reviewed dependency warnings; ran checks; helped preserve Git history and prepared documentation.
+**AI:** implemented the promotional page, fictional capacity panel, demo form, validation, API, Firestore integration and tests; checked dependencies and layouts; prepared documentation and Git commits.
 
-Earlier context came from the user's summary rather than a full prior transcript. Development included preparatory work. The AI did not start the official timer or submit through the assessment portal.
+Earlier context was supplied through the user's summary rather than a full transcript. Preparatory development is acknowledged. Portal handover remains the user's responsibility.
 
 ## Key instructions and decisions
 
-- Accepted the restricted scope: showcase shelter software and save demo requests; do not build membership, payments or a shelter-management system.
-- Used a shared Zod schema with separate client and server validation. Success waits for the Firestore write; failures preserve form data.
-- Kept Firebase Admin credentials server-side and browser database access closed. Origin/body-size checks are limited safeguards, not comprehensive bot protection.
-- Used plain CSS, system fonts and a decorative CSS illustration. The five-species dashboard is explicitly fictional. Row totals and summary totals are derived from the same data; fish capacity is labelled as a count of fish. Form options and backend behavior were preserved.
-- Corrected same-origin validation and added a regression test for an internal URL differing from the incoming Host header.
-- Rejected blind `npm audit fix --force`, incompatible downgrades and unverified overrides. Checked current releases, dependency ranges and actual upstream calls. No security fix fits the current ranges: braces has no listed patch and patched UUID is outside gaxios’s declared range. A UUID candidate passed a scoped multipart compatibility check, but no override was retained. Open findings and their impact remain documented in the README.
-
-- Accepted the desktop design revision: consistent Barındım branding, retained shelter drawing, original decorative SVG animals, wider layout, status colors with visible labels, one calculated totals summary below the species rows, and equally sized form controls. Backend, field definitions, service options and validation logic were preserved. Local review precedes publication.
+- Kept the scope to a fictional promotional site and persistent software demo requests, without a full shelter-management application.
+- Used shared Zod validation independently in browser and server. Success waits for the database write; errors preserve entered data. Firebase Admin credentials stay server-side.
+- Kept plain CSS and system fonts. The user approved warm colors, the original shelter drawing, decorative SVG animals and consistent branding. Five-species totals derive from one data source; fish capacity means number of fish. Mobile totals use a 2×2 grid, with independent table scrolling and stacked name/email fields.
+- Origin and body-size checks are limited safeguards. Rejected forced dependency fixes and unverified overrides. Braces has no listed patch; patched UUID exceeds the upstream range. The inspected UUID caller uses `v4()` without arguments. Findings remain open in the README.
 
 ## Actual verifications
 
-- Mobile follow-up: at 320, 360, 390 and 430 CSS pixels, measured no page, panel or totals overflow; all four total boxes fit inside the panel in a 2×2 grid. Confirmed independent table scrolling with a visible hint and full-width stacked name/email fields. Desktop retained the four-box row and side-by-side fields. Tests, lint, type-check and build passed; backend remained unchanged.
-
-- Local desktop redesign: visually inspected the full desktop/mobile page and desktop form error/success states. Browser checks passed at 320–1920 pixels, including single-summary placement, calculated totals, equal input/select heights, unchanged service values, keyboard skip link and pending/duplicate prevention. Form-state previews used mocked 503/201 responses; they did not verify a new database write. Existing tests, lint, type-check and build passed.
-
-- All seven automated tests, ESLint, TypeScript and production build passed.
-- Direct API requests bypassing browser validation rejected invalid fields and service values. Tests also covered malformed JSON, oversized bodies and cross-origin requests.
-- A valid live form submission returned success after saving; the resulting Firestore document and server timestamp were independently read and verified. Local server restart did not remove stored data.
-- Browser checks covered mobile/desktop layouts, keyboard navigation, visible focus, field errors, pending state, duplicate-submit prevention and preserved data after failure. The five-species calculations, totals, fish label and unchanged service options were checked at 320, 360, 390, 768 and 1440 pixels. No horizontal overflow or browser JavaScript errors were observed.
-- Failure behavior was checked through a delayed mock 503 response, a local server with missing Firebase configuration, and controlled storage failures in unit tests. These checks are not a test of an actual hosted database outage.
-- An anonymous Firestore document read was denied. A scoped scan of tracked files, reachable history and client build output found no matching credentials; this is not a comprehensive security audit.
-- The latest executed audits report 5 high/2 moderate findings overall and 2 moderate in production dependencies. The findings remain unresolved.
-- GitHub contains the application source, retains the original uploaded commit, and reports a successful Vercel deployment. The live site was accessed without a login.
+- Seven automated tests, lint, TypeScript and production build passed. Tests cover invalid fields/service values, validation bypass, malformed JSON, body limits, origin checks and delayed/failed writes.
+- A fictional live form submission returned success; its fields and server timestamp were independently read from Firestore. Anonymous document access was denied. The live page opened without login.
+- Browser checks covered desktop/mobile layouts, keyboard skip link and focus, field errors, pending/duplicate prevention and preserved input after failure. Mobile checks at 320, 360, 390 and 430 CSS pixels confirmed no page/panel/totals overflow, all four total boxes visible, independently scrollable table and full-width stacked fields. Desktop retained its layout.
+- Error/success visual previews used mocked responses; failure checks also used local missing Firebase configuration and controlled unit-test storage failures. No actual hosted database outage or full screen-reader test was performed.
+- A scoped scan checked tracked source and browser build output for credentials. Environment files, private key exports and generated dependency/build directories are excluded from Git. This is not a comprehensive security audit.
+- Audits report 5 high and 2 moderate findings overall, and 2 moderate in production dependencies; these remain unresolved. GitHub retains the original uploaded history and the application source.
