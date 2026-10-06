@@ -1,94 +1,33 @@
-# AI çalışma kaydı — Barındım
+# AI Log — Barındım
 
-## Kaydın sınırı ve süre
+## Tools used
 
-6 Ekim 2026 (Europe/Istanbul). Resmi 24 saatlik pencere kullanıcıya göre henüz başlatılmadı. Bu oturumdaki inceleme, araştırma ve uygulama **hazırlık çalışmasıdır**; saklanmaz veya 3–4 saate uyacak şekilde yeniden yazılmaz. Önceki sohbetin tam dökümü mevcut değil: ürün/kurulum geçmişi kullanıcının bu oturumda verdiği özetinden alınmıştır. Önceki aktif çalışma süresi bilinmiyor; kullanıcı tarafından eklenecek. Bu oturum yaklaşık 02:20 civarında başladı; kesin aktif süre ölçülmedi, kapanışta duvar saati aralığı ayrıca kaydedilecek. Bekleme/onay süreleri aktif emekle aynı değildir.
+Codex desktop; Node.js/npm; Git and GitHub CLI; TypeScript, ESLint, Node test runner and tsx; Playwright/Chromium for browser checks; shell/Python for file inspection and editing; pypdf for assignment review; web research using official documentation and security advisories.
 
-İki yerel Alex PDF'i okundu. Sürenin hazır olduğunda kullanıcı tarafından başladığı ve başvuru göndermenin süreyi başlatmadığı yazıyor. PDF'de hazırlık sırasında uygulama geliştirmeyi açıkça yasaklayan hüküm bulunamadı; bu bütün portal kuralları için kesin izin beyanı değildir. Kapalı SSS cevapları PDF'de görünmüyor. Portala giriş, süre başlatma veya teslim işlemi yapılmadı.
+## User and AI contributions
 
-## Araçlar ve görev dağılımı
+**User:** selected the product, target audience, Turkish language and visual direction; narrowed the scope to a promotional site and demo request form; created the Next.js scaffold; translated the README into English; configured Firebase and Vercel and deployed the site.
 
-Gerçekte kullanılan araçlar: Codex desktop AI, shell/Python ile dosya inceleme ve düzenleme, pypdf ile PDF metni, web aracıyla resmi kaynak araştırması, npm, Git salt okunur inceleme, Next.js/ESLint/TypeScript, Node test runner ve tsx. Tarayıcı kontrolleri yapıldıkça aşağıya eklenir. Firebase veya hosting hesabı henüz kullanılmadı. Model sürümü ve geçmiş sohbetteki araçlar bu kayıtta varsayılmaz.
+**AI:** implemented the page, fictional dashboard, form, shared validation, server API, Firestore integration and tests; reviewed dependency warnings; ran checks; helped preserve Git history and prepared documentation.
 
-Kullanıcı: Barındım fikri, Türkçe turuncu tema, scope sadeleştirme, Flutter/Firebase deneyimi ve Next.js iskeleti. AI: proje doğrulaması, araştırma, landing page/örnek panel/form/API/test/belge yazımı. Hesap kurulumu, kodu anlayarak sahiplenme, resmi başlangıç ve teslim kullanıcıya ait.
+Earlier context came from the user's summary rather than a full prior transcript. Development included preparatory work. The AI did not start the official timer or submit through the assessment portal.
 
-## Ana yönlendirmeler ve kararlar
+## Key instructions and decisions
 
-- Kullanıcı kapsamı: tanıtım sitesi + kalıcı yazılım demo talebi; üyelik/yönetim/ödeme ekleme. Kabul edildi.
-- Form: gerçek veritabanı onayı olmadan başarı gösterme, sunucu doğrulamasını atlama, hata halinde veriyi koru. Kabul edildi; ortak Zod şeması iki tarafta ayrı çalışır, API `await` ile yazmayı bekler.
-- Next.js@16.3.8 AGENTS talimatı doğrulandı; paketle gelen Route Handler/use-client rehberleri okundu. İlk rehber aramasında `.mdx` yolu bulunamadı; gerçek `.md` dosyası okundu.
-- `npm audit fix --force`: reddedildi. Güncel braces advisory'de patch yok; öneri eslint-config-next sürümünü 14'e düşürüyor. Doğrulanmamış override kullanılmadı.
-- Vercel Hobby + Firestore Spark önerildi; Next.js sunucu desteği ve kota/kişisel kullanım koşulları resmi belgelerle kontrol edildi. Ücretli plan veya deployment açılmadı.
-- Harici Google font yerine sistem fontu seçildi: build sırasında font indirmesi gerekmez. CSS çizimi dekoratif ve aria-hidden; sahte müşteri veya başarı iddiası yok.
-- Gövde sınırı ve origin kontrolü eklendi; bunlar kapsamlı bot/rate-limit koruması olarak sunulmadı.
-- Kullanıcı metnindeki “Fabricate error or successful test results” ifadesi gerçek doğrulama ve dürüstlük şartlarıyla çeliştiğinden test sonuçları uydurulmadı. PDF de olmayan hata üretmemeyi söylüyor.
+- Accepted the restricted scope: showcase shelter software and save demo requests; do not build membership, payments or a shelter-management system.
+- Used a shared Zod schema with separate client and server validation. Success waits for the Firestore write; failures preserve form data.
+- Kept Firebase Admin credentials server-side and browser database access closed. Origin/body-size checks are limited safeguards, not comprehensive bot protection.
+- Used plain CSS, system fonts and a decorative CSS illustration. The dashboard is explicitly fictional and its capacity totals are consistent.
+- Corrected same-origin validation and added a regression test for an internal URL differing from the incoming Host header.
+- Rejected blind `npm audit fix --force`, incompatible downgrades and unverified overrides. Open findings and their impact remain documented in the README.
 
-## İnceleme ve doğrulama (gerçek sonuçlar)
+## Actual verifications
 
-- Gerçek klasör `/Users/utku/Desktop/barindim`, oturum izin yolu farklı yazılmış `barındım`. Bu nedenle gerekli yazma/ağ komutlarında sistem izni istendi.
-- İlk git status temiz, başlangıç commit'i `cc793ed`. Alt klasör AGENTS bulunmadı; Zod/Firebase başlangıçta package.json'da yoktu. Başlangıç dosyaları geçici klasöre yedeklendi.
-- Paket kilidi ve gerçek npm ls ağacı incelendi. Zod@4.6.5, Firebase Admin@14.5.0 ve tsx@4.23.15 kuruldu. İlk audit sandbox DNS nedeniyle başarısız oldu; izinli komutla tekrarlandı.
-- İlk kurulum sonrası audit: 5 high (braces zinciri) ve 2 moderate (uuid/gaxios). Sonraki güvenlik araştırması ve düzeltme sonuçları aşağıya eklenecek.
-- Örnek kapasite aritmetiği: köpek 100=64+8+28, kedi 60=42+6+12, toplam 160=106+14+40.
-
-## Tamamlanmamış doğrulama
-
-İlk kayıtta bekleyen gerçek Firestore belgesi/kalıcılık kontrolleri aşağıda tamamlandı. Canlı ortam başarı/hata akışı, canlı URL erişimi, GitHub değerlendirici erişimi ve teslim commit kimliği henüz doğrulanmadı. Kontrollü test depolaması gerçek veritabanı olarak gösterilmeyecek. Kullanıcının önceki testleri bu oturumda yapılmış gibi yazılmayacak.
-
-## Uygulama kontrolleri — ilk tur
-
-- 6/6 handler testi, ESLint, TypeScript ve Next production build geçti. API dinamik, landing page statik üretildi.
-- Firebase projesi `barindim-f66f4` kullanıcı tarafından paylaşıldı. JSON yolu yazım farkıyla Downloads altında bulundu; içerik sohbete basılmadan `.env.local` oluşturuldu (0600). `git check-ignore .env.local` doğrulandı.
-- Geçici API testinde Response.status yanlışlıkla fonksiyon gibi çağrıldı; test betiği düzeltildi. Bu uygulama hatası değil, gerçek doğrulama aracı hatasıdır. İlk başarısız denemeler kaydedilmiştir.
-- Yerel production API: geçersiz istek 400; geçerli kurgusal istek 201. Firestore'da `K5hCGAnpf9jbVkSu19hn` belgesi Admin SDK ile yeniden okundu, alanlar ve createdAt doğrulandı.
-- Playwright başlangıçta Chromium olmadığı için çalışmadı. Kullanıcı izniyle Chromium indirildi. 320/360/390/768/1440px taşma kontrolleri geçti; masaüstü/mobil ekran görüntüleri incelendi. Tarayıcı JS hatası yok.
-- Klavyeyle skip link Tab/Enter, boş form alan hataları, kontrollü geciken 503 yanıtında pending/disabled durum, aynı form için ikinci submit engeli ve hata sonrası verilerin korunması geçti. Bu hata testi ağ yanıtını mock etti; gerçek DB hatası olarak yazılmadı.
-- Gerçek tarayıcı gönderimi ilk turda 403 oldu: Next internal localhost URL ile 127.0.0.1 Origin farklıydı. Origin doğrulaması Host başlığıyla düzeltildi ve regresyon testi eklendi. Sonraki doğrulama aşağıya eklenecek.
-- uuid advisory resmi GitHub kaydı kontrol edildi; fixed 11.1.1/12.0.1/13.0.1. Gerçek zincir Cloud Storage → gaxios@6.7.1 → uuid@9.0.1. npm audit fix dry-run değişiklik göstermedi; registry gaxios 6.x en güncel 6.7.1. Kaynakta v4 kullanıldığı görüldü (advisory v3/v5/v6); uyarı yok sayılmadı veya override yapılmadı.
-
-## Son yerel doğrulama — 6 Ekim 2026
-
-- 7/7 handler testi, ESLint, TypeScript ve production build yeniden geçti; same-origin Host regresyon testi dahil.
-- Origin düzeltmesi sonrasında gerçek Playwright form gönderimi 201 ve `GB9I2niB3rwtXsAAvSpD` kayıt kimliği verdi. Firestore belgesi yeniden okundu, kurgusal e-posta ve sunucu zamanı doğrulandı. Tarayıcıda başarı mesajı gözlendi.
-- Production sunucusu yeniden başlatıldı; önceki `K5hCGAnpf9jbVkSu19hn` belgesi hâlâ vardı. Bu gerçek bulut veritabanı kalıcılık kontrolüdür; canlı hosting testi değildir.
-- Anonim Firestore REST belge okuma 403 oldu. Bu belirli isteğin reddedildiğini gösterir; bütün IAM/rules senaryolarının kapsamlı denetimi değildir. Repo deny-all rules dosyası Firebase Console'da ayrıca doğrulanmalıdır.
-- Klavye testinin iki ilk denemesi native select kutusunda sırasıyla odak sırası ve seçim nedeniyle başarısız oldu. Hizmet seçimi klavyenin `k` karakter kısayoluyla yapıldıktan sonra Tab ile tüm alanlar ve görünür button focus/Enter gönderimi geçti. Kontrol betiği düzeltildi; uygulama için ek klavye değişikliği gerekmedi.
-- 3002 portundaki ayrı production sunucusunda Firebase değişkenleri bilerek boş bırakıldı. Gerçek istek 503 döndü, başarı mesajı yoktu, girilen veriler korundu. Bu gerçek yapılandırma hatası testidir; bulut Firestore kesintisi simüle edilmedi.
-- `npm audit --omit=dev`: 0 high, 2 moderate (gaxios/uuid). Tam audit: 5 high, 2 moderate. Bunlar çözümlendi olarak işaretlenmedi.
-- `git diff --check` temiz. `.env.local` Git dışında. Private key literalinin `.next/static` istemci çıktılarında olmadığı kontrol edildi; anahtar içeriği yazdırılmadı.
-- Desktop/mobile screenshot görsel kontrolü yapıldı; 320/360/390/768/1440 genişliklerinde yatay taşma yok. Bu otomasyon tam ekran okuyucu denetimi değildir.
-- GitHub CLI salt okunur sorgusu kişisel hesabın bağlı olduğunu gösterdi; repo remote yok. Vercel CLI kurulu değil. Repo seçimi ve Vercel yayın işlemi henüz yapılmadı.
-
-Bu oturumda hazırlık çalışması yaklaşık 02:20–02:50 İstanbul duvar saati aralığında ilerledi; araç/onay beklemeleri dahildir ve kesin aktif çalışma ölçümü değildir. Önceki hazırlık süresi bilinmiyor. Resmi 24 saat başlatılmadı; portal teslimi yapılmadı. Son teslim commit'i, canlı URL ve değerlendirici erişimi tamamlanınca ayrıca kaydedilecek.
-
-## GitHub history merge — 6 October 2026
-
-The user manually uploaded top-level files to `https://github.com/UtkuKesanli/barindim` (public repository), producing remote commit `e3119e4d88321b12d8fa4cee3c6b999575c5bde4`. The local repository was clean at `51121ca33294d56f61f610f5ed55a9ee231d898f` and had no remote. The user explicitly authorized fetching, merging unrelated histories, resolving conflicts without losing significant changes, running checks, and pushing without force.
-
-Added origin and fetched remote main. Compared every shared file: all shared contents were identical; no content conflicts occurred. Merged using `--allow-unrelated-histories --no-commit`. The remote had generated `next-env.d.ts` and `tsconfig.tsbuildinfo`; these were removed from the index, retained locally, and remain ignored. The original GitHub commit is retained in ancestry. The complete local src/, public/, tests/, .gitignore and .env.example are included. Pre-push verification results and the actual push result will be recorded only after execution. This is source publication, not official portal submission or timer start.
-
-Pre-push checks passed: ESLint, 7/7 handler tests, TypeScript, Next.js production build, and git diff --check. Index inspection confirmed required src/ API/form/schema/Firebase files and tests are tracked. .env.local, Firebase key exports, node_modules/, .next/, next-env.d.ts and tsconfig.tsbuildinfo are absent from the final index and ignored. The index contains no private-key PEM literal. The remote generated-file versions remain in the original commit's history, as required by preserving history. No application code changes were necessary for the merge.
-
-Push succeeded: GitHub main advanced normally from `e3119e4` to merge commit `7e06fb2`. No force push was used. `git merge-base --is-ancestor` confirmed the original GitHub commit is retained. Existing GitHub CLI authentication worked without further login. Main now tracks origin/main. A documentation follow-up records this actual result; application code is unchanged from the checked merge. Live hosting and official submission remain pending.
-
-## Live Vercel verification — 6 October 2026
-
-The user configured Vercel via its UI, imported server environment variables, deployed the site, and provided https://barindim.vercel.app. The .env.local file was checked for existence and required variable names without printing values. Vercel configuration advice was checked against official build/environment-variable docs. Deployment was performed by the user, not by AI.
-
-The web reader could not access the deployed URL; Chromium successfully loaded it without a login. Direct API tests bypassing browser validation rejected invalid fields and invalid service with 400. A real fictional demo form submission returned 201 and record `u5hGAG2GGcPaFaBiL2vX`; the success message was observed after the response. Independent Firebase Admin read matched name, email, service, description and server timestamp (2026-10-06T00:14:35.670Z / 03:14:35 Istanbul). An anonymous Firestore REST read returned 403.
-
-No horizontal overflow at 320/360/390/768/1440px; desktop/mobile screenshots visually reviewed; keyboard skip link and inline invalid-field errors passed. Browser interception of a delayed 503 checked disabled/pending state, duplicate-submit lock, no false success and preserved fields. The 503 here was mock network behavior; a real hosted Firestore outage was not induced. No browser JavaScript errors. These checks reuse the previously exercised local browser test with the live URL.
-
-Found uncommitted English README translation before work. Preserved its content and created a temporary backup before targeted status updates. At that point the README/AI_LOG live results were local and uncommitted; user changes were not automatically pushed. The user subsequently explicitly authorized finalizing and pushing these files. Later finalization results are recorded below. Existing dependency audit warnings remain documented. No official timer/start/submission action was taken.
-
-## Final source and delivery review — 6 October 2026
-
-The user explicitly requested scanning/finalizing the files and pushing the commit. The English README translation was preserved and its contribution attributed to the user. Earlier sections record historical state at the time of each action, rather than the final delivery status. The application scope and code are unchanged. README now includes the live URL, source URL, confirmed fictional Firestore record, reproducible test commands, environment-variable names, third-party/own contributions, remaining limitations and commit-identification instructions.
-
-Actual final checks: ESLint passed, 7/7 tests passed, TypeScript passed, Next.js production build passed, git diff --check passed. Both npm audits rerun: full 5 high/2 moderate; production 0 high/2 moderate. No blind audit fix, downgrade or dependency override applied. These findings remain unresolved and are explicitly documented.
-
-Required source files and tests verified as tracked. Scoped scan of 28 tracked files and 40 reachable Git historical blobs found no PEM private-key, common GitHub/AWS token, service-account JSON patterns or known Firebase private-key literal. Known key also absent from the client static build. .env.local, Firebase credential exports, node_modules/, .next/, next-env.d.ts and tsconfig.tsbuildinfo excluded from the current index. This is a scoped scan, not a comprehensive credential/security audit. Remote main was fetched and matched local HEAD before finalization; the original manually uploaded GitHub commit remains in ancestry.
-
-GitHub's commit-status API reported state success / context Vercel for `cbd90b5eefa95baa299a713badb75e8446711e2e`. This confirms the integration's successful deployment report; the live form/Firestore checks are recorded separately above. Final documentation push result and any later deployment status are reported in the accompanying final response after execution. The exact final SHA is obtained from git after committing, rather than embedded into its own content.
-
-Time accounting: the earlier 02:20–02:50 estimate is approximate wall-clock preparation time, not measured active effort. Subsequent setup, review, deployment support and finalization were also preparation work; total active effort and previous-session duration are unknown. No timer was started and no portal submission performed by AI. No success, failure or time result was fabricated.
+- All seven automated tests, ESLint, TypeScript and production build passed.
+- Direct API requests bypassing browser validation rejected invalid fields and service values. Tests also covered malformed JSON, oversized bodies and cross-origin requests.
+- A valid live form submission returned success after saving; the resulting Firestore document and server timestamp were independently read and verified. Local server restart did not remove stored data.
+- Browser checks covered mobile/desktop layouts, keyboard navigation, visible focus, field errors, pending state, duplicate-submit prevention and preserved data after failure. No horizontal overflow or browser JavaScript errors were observed.
+- Failure behavior was checked through a delayed mock 503 response, a local server with missing Firebase configuration, and controlled storage failures in unit tests. These checks are not a test of an actual hosted database outage.
+- An anonymous Firestore document read was denied. A scoped scan of tracked files, reachable history and client build output found no matching credentials; this is not a comprehensive security audit.
+- The latest executed audits report 5 high/2 moderate findings overall and 2 moderate in production dependencies. The findings remain unresolved.
+- GitHub contains the application source, retains the original uploaded commit, and reports a successful Vercel deployment. The live site was accessed without a login.
